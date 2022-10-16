@@ -75,6 +75,8 @@ const Cart = (props) => {
         <div className={classes.actions}>
           {props.showActionButton && !sendingOrder && !orderSent && closeBtn}
           {orderSent && closeBtn}
+          {'for routes'}
+          {'added in route'}
           {hasItems && !sendingOrder && !orderSent && props.showActionButton && (
             <button className={classes.button} onClick={props.onOrder}>
               Order
