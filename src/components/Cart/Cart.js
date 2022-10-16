@@ -74,6 +74,7 @@ const Cart = (props) => {
 
         <div className={classes.actions}>
           {props.showActionButton && !sendingOrder && !orderSent && closeBtn}
+          {'ok'}
           {orderSent && closeBtn}
           {hasItems && !sendingOrder && !orderSent && props.showActionButton && (
             <button className={classes.button} onClick={props.onOrder}>
