@@ -5,6 +5,7 @@ import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import CartContext from '../../store/cart-context';
 import OrderForm from './OrderForm';
+import { Link } from 'react-router-dom';
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
   const [sendingOrder, setSendingOrder] = useState(false);
@@ -75,8 +76,6 @@ const Cart = (props) => {
         <div className={classes.actions}>
           {props.showActionButton && !sendingOrder && !orderSent && closeBtn}
           {orderSent && closeBtn}
-          {'for routes'}
-          {'added in route'}
           {hasItems && !sendingOrder && !orderSent && props.showActionButton && (
             <button className={classes.button} onClick={props.onOrder}>
               Order
