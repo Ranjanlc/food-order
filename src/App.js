@@ -4,18 +4,26 @@ import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
 import CartProvider from './store/CartProvider';
 import LoadingSpinner from './components/UI/LoadingSpinner';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useParams,
+  useLocation,
+} from 'react-router-dom';
 
-const Cart = React.lazy(() => import('./components/Cart/Cart'));
 function App() {
   const navigate = useNavigate();
+
   const [cartIsShown, setCartIsShown] = useState(false);
   const [formIsShown, setFormIsShown] = useState(false);
-  let actionButtonShow = cartIsShown && !formIsShown;
+
   const showCartHandler = () => {
     setCartIsShown(true);
   };
   const showFormHandler = () => {
+    navigate('/meals/cart/order');
     setFormIsShown(true);
   };
   const hideCartHandler = () => {
@@ -49,9 +57,9 @@ function App() {
                 cartIsShown={cartIsShown}
                 onClose={hideCartHandler}
                 onOrder={showFormHandler}
-                showForm={formIsShown}
+                formIsShown={formIsShown}
                 onCancel={hideFormHandler}
-                showActionButton={actionButtonShow}
+                showCart={showCartHandler}
               />
             }
           />
