@@ -1,20 +1,26 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import CartContext from '../../store/cart-context';
 import OrderForm from './OrderForm';
+import { useNavigate } from 'react-router-dom';
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
   const [sendingOrder, setSendingOrder] = useState(false);
   const [orderSent, setOrderSent] = useState(false);
-  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+  const totalAmount = `$${Math.abs(cartCtx.totalAmount).toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    !props.cartIsShown && navigate('/meals');
+    // If user reloads while in cart component,redirect him to meals
+  }, [props.cartIsShown]);
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
   };
-
   const cartItemAddHandler = (item) => {
     cartCtx.addItem({ ...item, amount: 1 });
   };
@@ -57,36 +63,48 @@ const Cart = (props) => {
       Close
     </button>
   );
+  const showOrderButton =
+    hasItems && props.cartIsShown && !props.formIsShown && !orderSent;
+  const showCloseButton =
+    props.cartIsShown && !props.formIsShown && !sendingOrder;
   return (
     <React.Fragment>
-      <Modal onClose={props.onClose}>
-        {sendingOrder && <p>Sending Data.....</p>}
-        {orderSent && <p>Order Sent</p>}
-        {!sendingOrder && !orderSent && (
-          <React.Fragment>
-            {cartItems}
-            <div className={classes.total}>
-              <span>Total Amount</span>
-              <span>{totalAmount}</span>
-            </div>
-          </React.Fragment>
-        )}
+      {props.cartIsShown && (
+        <Modal onClose={props.onClose}>
+          {sendingOrder && <p>Sending Data.....</p>}
+          {orderSent && <p>Order Sent</p>}
+          {!sendingOrder && !orderSent && (
+            <React.Fragment>
+              {cartItems}
+              <div className={classes.total}>
+                <span>Total Amount</span>
+                <span>{totalAmount}</span>
+              </div>
+            </React.Fragment>
+          )}
 
-        <div className={classes.actions}>
-          {props.showActionButton && !sendingOrder && !orderSent && closeBtn}
+          <div className={classes.actions}>
+            {/* {props.showActionButton && !sendingOrder && !orderSent && closeBtn}
           {orderSent && closeBtn}
-          {hasItems && !sendingOrder && !orderSent && props.showActionButton && (
-            <button className={classes.button} onClick={props.onOrder}>
-              Order
-            </button>
-          )}
-        </div>
-        <div>
-          {props.showForm && (
-            <OrderForm onCancel={props.onClose} onSubmit={formSubmitHandler} />
-          )}
-        </div>
-      </Modal>
+          {includeCart && showActionButton && closeBtn} */}
+            {showCloseButton && !orderSent && closeBtn}
+            {orderSent && closeBtn}
+            {showOrderButton && (
+              <button className={classes.button} onClick={props.onOrder}>
+                Order
+              </button>
+            )}
+          </div>
+          <div>
+            {props.formIsShown && (
+              <OrderForm
+                onCancel={props.onClose}
+                onSubmit={formSubmitHandler}
+              />
+            )}
+          </div>
+        </Modal>
+      )}
     </React.Fragment>
   );
 };

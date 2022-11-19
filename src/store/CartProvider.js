@@ -1,6 +1,6 @@
-import { useReducer } from "react";
+import { useReducer } from 'react';
 
-import CartContext from "./cart-context";
+import CartContext from './cart-context';
 
 const defaultCartState = {
   items: [],
@@ -8,7 +8,7 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
-  if (action.type === "ADD") {
+  if (action.type === 'ADD') {
     let updatedItems;
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
@@ -28,7 +28,7 @@ const cartReducer = (state, action) => {
 
     return { items: updatedItems, totalAmount: updatedTotalAmount };
   }
-  if (action.type === "REMOVE") {
+  if (action.type === 'REMOVE') {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.id
     ); //To find out in which position the upcoming removed item is
@@ -51,7 +51,7 @@ const cartReducer = (state, action) => {
       totalAmount: updatedTotalAmount,
     };
   }
-  if (action.type === "RESET") {
+  if (action.type === 'RESET') {
     return defaultCartState;
   }
 
@@ -65,14 +65,14 @@ const CartProvider = (props) => {
   );
 
   const addItemToCartHandler = (item) => {
-    dispatchCartAction({ type: "ADD", item: item });
+    dispatchCartAction({ type: 'ADD', item: item });
   };
 
   const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({ type: "REMOVE", id: id });
+    dispatchCartAction({ type: 'REMOVE', id: id });
   };
   const clearItemFromCartHandler = () => {
-    dispatchCartAction({ type: "RESET" });
+    dispatchCartAction({ type: 'RESET' });
   };
 
   const cartContext = {

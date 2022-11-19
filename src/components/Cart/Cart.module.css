@@ -21,6 +21,9 @@
 
 .actions button {
   font: inherit;
+  /* text-decoration: none;
+  color: black;
+  font-weight: 600; */
   cursor: pointer;
   background-color: transparent;
   border: 1px solid #8a2b06;
@@ -36,11 +39,11 @@
   color: white;
 }
 
-.actions .button--alt {
+.actions .btn--alt {
   color: #8a2b06;
 }
 
-.actions .button {
+.actions .btn {
   background-color: #8a2b06;
   color: white;
 }

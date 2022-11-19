@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import useInput from "../../hooks/use-input";
-import CartContext from "../../store/cart-context";
-import Button from "../UI/Button";
-import Input from "../UI/Input";
+import React, { useContext, useState } from 'react';
+import useInput from '../../hooks/use-input';
+import CartContext from '../../store/cart-context';
+import Button from '../UI/Button';
+import Input from '../UI/Input';
 
 const OrderForm = (props) => {
   const { items, totalAmount } = useContext(CartContext);
@@ -39,7 +39,7 @@ const OrderForm = (props) => {
     inputChangeHandler: emailChangeHandler,
     hasError: emailHasError,
     reset: resetEmail,
-  } = useInput((val) => val.includes("@"));
+  } = useInput((val) => val.includes('@'));
 
   const errorLoader = (field, msg) => {
     return field && <p className="error-text">{msg}</p>;
@@ -68,61 +68,61 @@ const OrderForm = (props) => {
   return (
     <form
       onSubmit={formSubmitHandler}
-      style={{ height: "200px", overflow: "auto" }}
+      style={{ height: '200px', overflow: 'auto' }}
     >
       {/* Used inline style coz having a whole css module file for this feature is not that worth it. */}
       <Input
         value={enteredName}
         label="Name:"
         input={{
-          id: "name",
-          type: "text",
-          placeholder: "Enter your name here",
+          id: 'name',
+          type: 'text',
+          placeholder: 'Enter your name here',
           onBlur: nameBlurHandler,
           onChange: nameChangeHandler,
         }}
       />
 
-      {errorLoader(nameHasError, "I am pleading you to enter your name")}
+      {errorLoader(nameHasError, 'I am pleading you to enter your name')}
 
       <Input
         value={enteredEmail}
         label="Email:"
         input={{
-          id: "email",
-          type: "email",
-          placeholder: "Enter your email here",
+          id: 'email',
+          type: 'email',
+          placeholder: 'Enter your email here',
           onChange: emailChangeHandler,
           onBlur: emailBlurHandler,
         }}
       />
-      {errorLoader(emailHasError, "Stone age,huh?")}
+      {errorLoader(emailHasError, 'Stone age,huh?')}
       <Input
         value={enteredAddress}
         label="Address:"
         input={{
-          id: "address",
-          type: "text",
-          placeholder: "Enter your address here",
+          id: 'address',
+          type: 'text',
+          placeholder: 'Enter your address here',
           onChange: addressChangeHandler,
           onBlur: addressBlurHandler,
         }}
       />
-      {errorLoader(addressHasError, "Are you homeless?")}
+      {errorLoader(addressHasError, 'Are you homeless?')}
       <Input
         label="Contact No.:"
         value={enteredContact}
         input={{
-          id: "contact",
-          type: "tel",
-          placeholder: "Enter your number here",
-          maxLength: "10",
+          id: 'contact',
+          type: 'tel',
+          placeholder: 'Enter your number here',
+          maxLength: '10',
           onChange: contactChangeHandler,
           onBlur: contactBlurHandler,
         }}
       />
-      {errorLoader(contactHasError, "Nomad?")}
-      <Button onClick={props.hideCartHandler}>Cancel</Button>
+      {errorLoader(contactHasError, 'Nomad?')}
+      <Button onClick={props.onCancel}>Cancel</Button>
       <Button type="submit" disabled={!formIsValid}>
         Confirm
       </Button>
