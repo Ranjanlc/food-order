@@ -1,15 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 
-import CartIcon from '../Cart/CartIcon';
+import CartIcon from '../UI/CartIcon';
 import CartContext from '../../store/cart-context';
 import classes from './HeaderCartButton.module.css';
-import LoadingSpinner from '../UI/LoadingSpinner';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const HeaderCartButton = (props) => {
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
   const cartCtx = useContext(CartContext);
-  const location = useLocation();
   const { items } = cartCtx;
   // location.pathname.includes('cart') && props.onClick();
   const numberOfCartItems = items.reduce((curNumber, item) => {
