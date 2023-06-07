@@ -60,3 +60,9 @@ a {
     transform: scale(1);
   }
 }
+@media (max-width: 400px) {
+  .button {
+    padding: 1rem;
+    font-size: small;
+  }
+}

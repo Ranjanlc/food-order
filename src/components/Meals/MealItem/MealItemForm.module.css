@@ -18,3 +18,9 @@
   background-color: #641e03;
   border-color: #641e03;
 }
+@media (max-width: 400px) {
+  .form button {
+    width: 100%;
+    padding: 0;
+  }
+}

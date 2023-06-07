@@ -17,3 +17,8 @@
   font: inherit;
   padding-left: 0.5rem;
 }
+@media (max-width: 400px) {
+  .input {
+    flex-direction: column;
+  }
+}

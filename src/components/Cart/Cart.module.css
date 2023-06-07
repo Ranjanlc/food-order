@@ -47,3 +47,16 @@
   background-color: #8a2b06;
   color: white;
 }
+
+@media (max-width: 350px) {
+  .total {
+    font-size: 1rem;
+  }
+  .actions {
+    display: flex;
+    flex-direction: column;
+  }
+  .actions button {
+    margin: 5px 0;
+  }
+}

@@ -12,6 +12,13 @@
 
 .description {
   font-style: italic;
+  display: flex;
+  flex-wrap: wrap;
+}
+h3 {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .price {
@@ -19,4 +26,15 @@
   font-weight: bold;
   color: #ad5502;
   font-size: 1.25rem;
+}
+@media (max-width: 400px) {
+  .meal {
+    font-size: smaller;
+  }
+  h3 {
+    font-size: medium;
+  }
+  .description {
+    font-size: smaller;
+  }
 }

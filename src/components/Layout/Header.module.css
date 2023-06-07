@@ -27,3 +27,11 @@
   object-fit: cover;
   transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
 }
+@media (max-width: 400px) {
+  .header {
+    padding: 2%;
+  }
+  .header h1 {
+    font-size: 1.3rem;
+  }
+}
